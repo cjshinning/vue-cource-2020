@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">{{name}}</div>
+  <script src="/node_modules/vue/dist/vue.js"></script>
+  <script>
+    // 1.渲染采用模板的顺序
+    // 2.默认会先查找用户传入的render函数
+    // 3.如果没有render 查找template
+    // 4.如果没有传入template 函数会采用el 对应的元素进行渲染
+    let vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          name: 'Jenny'
+        }
+      },
+      // template: `<div>hello</div>`,
+      // render(h) {
+      //   return h('h1', { id: 'xxx' }, this.name);
+      // }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">{{name.a}} - {{arr}}</div>
+  <script src="/node_modules/vue/dist/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          name: {
+            n: 'Jenny'
+          },
+          arr: [1, 2, 3]
+        }
+      }
+    })
+    // 1.不存在的属性，如果新增的话不能渲染视图，内部会采用defineProperty重新定义属性 getter和setter
+    vm.name.a = 100;
+    // vm.arr.push(100);
+  </script>
+</body>
+
+</html>
