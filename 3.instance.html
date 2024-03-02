@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">{{name}}</div>
+  <script src="/node_modules/vue/dist/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      data() {
+        return {
+          name: 'Jenny'
+        }
+      }
+    })
+    // 可以自定义挂载点 弹窗组件
+    // vm.$mount 内部会判断用户是否传入el属性，如果没有，则不会进行挂载
+    vm.$mount('#app');
+    console.log(vm.$options);
+    console.log(vm.$data == vm._data);
+    vm.name = 'xxx';
+    console.log(vm.$el.innerHTML);
+    console.log(vm.$nextTick);
+
+    // 异步渲染 queueWatcher 会把属性对应的watcher存放起来
+    vm.$watch('name', (newValue, oldValue) => {
+      console.log(newValue);
+    })
+    vm.name = 1;
+    vm.name = 2;
+    vm.name = 3;
+
+    // $watch $nextTick $mount
+    // vm.$data vm.$options vm.$el
+  </script>
+</body>
+
+</html>
