@@ -24,8 +24,19 @@
       }
     })
     // 1.不存在的属性，如果新增的话不能渲染视图，内部会采用defineProperty重新定义属性 getter和setter
-    vm.name.a = 100;
+    // vm.name.a = 100;
     // vm.arr.push(100);
+    // vm.name = {  //可以触发更新
+    //   ...vm.name,
+    //   a: 1
+    // }
+    // 内部也会触发更新，而且新增的a熟悉是响应式的
+    // vm.$set(vm.name, 'a', 1);
+    // vm.name.a = 100;
+
+    // 2.数组只能通过数组的7个方法来实现更新试图，不能使用索引长度
+    // vm.arr.push(456);  //内部才采用splice
+    vm.$set(vm.arr, 0, 100);
   </script>
 </body>
 
