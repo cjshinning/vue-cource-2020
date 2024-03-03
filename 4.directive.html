@@ -22,6 +22,28 @@
     <!-- v-show 是指令 -->
     <!-- display:none opacity visibility:hidden -->
     <div v-show="true">hello</div>
+
+    <!-- v-for和if优先级问题 先循环再判断，尽量使用计算属性来解决这个问题 -->
+    <div v-for="(a,index) of arr" :key="index" v-if="a%2===0"></div>
+
+    <!-- key的问题 尽量不要使用索引做为key -->
+    <!-- 用索引会导致 苹果->香蕉  香蕉->苹果 -->
+    <li key="0">苹果</li>
+    <li key="1">桔子</li>
+    <li key="2">香蕉</li>
+
+    <li key="0">香蕉</li>
+    <li key="1">桔子</li>
+    <li key="2">苹果</li>
+
+    <!-- key的作用 -->
+    <li key="p">苹果</li>
+    <li key="j">桔子</li>
+    <li key="x">香蕉</li>
+
+    <li key="x">香蕉</li>
+    <li key="j">桔子</li>
+    <li key="p">苹果</li>
   </div>
   <script src="/node_modules/vue/dist/vue.js"></script>
   <script>
@@ -30,7 +52,8 @@
       data() {
         return {
           name: 'Jenny',
-          html: '<h1>hello</h1>'
+          html: '<h1>hello</h1>',
+          arr: [1, 2, 3]
         }
       }
     })
