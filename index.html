@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=s, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>动态加载图片</h3>
+  <div id="app">
+    <div class="box">
+      <li v-for="img in imgs" :key="img">
+        <img v-lazy="img" alt="">
+      </li>
+    </div>
+  </div>
+  <script src="/node_modules/vue/dist/vue.js"></script>
+  <script src="/node_modules/vue-lazyload/vue-lazyload.js"></script>
+  <script src="/node_modules/axios/dist/axios.js"></script>
+  <script>
+    const loading = 'http://localhost:3000/images/loading.gif';
+    Vue.use(VueLazyload)
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        imgs: []
+      },
+      created() {
+        axios.get('http://localhost:3000/api/img').then(res => {
+          this.imgs = res.data;
+        })
+      }
+    })
+  </script>
+  <style>
+    .box {
+      width: 300px;
+      height: 300px;
+      overflow: scroll;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</body>
+
+</html>
