@@ -11,18 +11,21 @@
 <body>
   <h3>动态加载图片</h3>
   <div id="app">
-    <div class="box">
+    <div class="box" style="overflow: scroll;">
       <li v-for="img in imgs" :key="img">
         <img v-lazy="img" alt="">
       </li>
     </div>
   </div>
   <script src="/node_modules/vue/dist/vue.js"></script>
-  <script src="/node_modules/vue-lazyload/vue-lazyload.js"></script>
+  <script src="./vue-lazyload.js"></script>
   <script src="/node_modules/axios/dist/axios.js"></script>
   <script>
     const loading = 'http://localhost:3000/images/loading.gif';
-    Vue.use(VueLazyload)
+    Vue.use(VueLazyload, {
+      preLoad: 1,
+      loading
+    })
     let vm = new Vue({
       el: '#app',
       data: {
@@ -39,7 +42,7 @@
     .box {
       width: 300px;
       height: 300px;
-      overflow: scroll;
+      /* overflow: scroll; */
     }
 
     img {
